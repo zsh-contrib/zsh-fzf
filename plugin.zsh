@@ -8,8 +8,10 @@ source "${0:A:h}/widgets/open.zsh"
 source "${0:A:h}/widgets/tmux.zsh"
 source "${0:A:h}/widgets/zoxide.zsh"
 
-# Create a ZLE widget from the tmux_fzf_switch function defined in tmux_fzf.sh.
+# Create the zle widgets
 zle -N tmux_fzf_switch
+zle -N tmux_fzf_session
 
-# Bind the widget to Ctrl+p.
-bindkey '^[p' tmux_fzf_switch
+# Bind the zle widgets
+bindkey '^[s' tmux_fzf_switch
+bindkey '^[p' tmux_fzf_session

@@ -6,30 +6,29 @@
 # Provides functions for managing tmux sessions with fzf.
 
 # Switch to a given tmux session.
-switch_to() {
+tmux_switch_to() {
   tmux switch-client -t "$1"
 }
 
 # Check if a tmux session exists.
-has_session() {
+tmux_has_session() {
   tmux list-sessions 2>/dev/null | grep -q "^$1:"
 }
 
 # Create a new tmux session.
-new_session() {
+tmux_new_session() {
   tmux new-session -ds "$1" -c "$2"
 }
 
 # Derive a session name from a directory path.
-get_session_name() {
+tmux_session_name() {
   local project workspace
   project=$(basename "$1")
   workspace=$(basename "$(dirname "$1")")
   echo "${workspace}/${project}" | tr . _
 }
 
-# Main function that uses fzf to select a directory and manages the tmux session.
-tmux_fzf_switch() {
+tmux_fzf_session() {
   local SESSION_DIR_PATH SESSION_NAME
 
   if [[ $# -eq 1 ]]; then
@@ -43,13 +42,26 @@ tmux_fzf_switch() {
     return 0
   fi
 
-  SESSION_NAME=$(get_session_name "$SESSION_DIR_PATH")
+  SESSION_NAME=$(tmux_session_name "$SESSION_DIR_PATH")
 
-  if ! has_session "$SESSION_NAME"; then
-    new_session "$SESSION_NAME" "$SESSION_DIR_PATH"
+  if ! tmux_has_session "$SESSION_NAME"; then
+    tmux_new_session "$SESSION_NAME" "$SESSION_DIR_PATH"
   fi
 
-  switch_to "$SESSION_NAME"
+  tmux_switch_to "$SESSION_NAME"
+
+  # Refresh the prompt (useful when called as a ZLE widget).
+  zle reset-prompt
+}
+
+tmux_fzf_switch() {
+  # List sessions, extract their names, and use fzf to select one.
+  SESSION_NAME=$(tmux ls | cut -d: -f1 | fzf --prompt="Select tmux session> ")
+
+  # If a session is selected, switch to it.
+  if [[ -n $session ]]; then
+    tmux_switch_to "$SESSION_NAME"
+  fi
 
   # Refresh the prompt (useful when called as a ZLE widget).
   zle reset-prompt
