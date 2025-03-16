@@ -1,6 +1,9 @@
 #!/usr/bin/env zsh
 
-# plugin.zsh
+# plugin configuration
+source "${0:A:h}/config.zsh"
+
+# plugin widgets
 source "${0:A:h}/widgets/tmux.zsh"
 
 # Create a ZLE widget from the tmux_fzf_switch function defined in tmux_fzf.sh.
