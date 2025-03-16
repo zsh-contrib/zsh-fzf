@@ -2,6 +2,8 @@
 
 FZF_THEME="${FZF_THEME:-mocha}"
 
+export FZF_DEFAULT_OPTS="--tmux --layout reverse-list --highlight-line --bind 'alt-enter:become(fzf_open {}),alt-O:become(open {})'"
+
 case "$FZF_THEME" in
   latte)
     export FZF_DEFAULT_OPTS=" \
