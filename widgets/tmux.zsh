@@ -56,7 +56,7 @@ tmux_fzf_session() {
 
 tmux_fzf_switch() {
   # List sessions, extract their names, and use fzf to select one.
-  SESSION_NAME=$(tmux ls | cut -d: -f1 | fzf --prompt="Select tmux session> ")
+  SESSION_NAME=$(tmux ls | cut -d: -f1 | fzf --list-label "tmux session" --highlight-line --style full)
 
   # If a session is selected, switch to it.
   if [[ -n $SESSION_NAME ]]; then
