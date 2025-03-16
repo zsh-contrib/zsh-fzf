@@ -22,23 +22,25 @@ tmux_new_session() {
 
 # Derive a session name from a directory path.
 tmux_session_name() {
-  local project workspace
-  project=$(basename "$1")
-  workspace=$(basename "$(dirname "$1")")
-  echo "${workspace}/${project}" | tr . _
+  local PROJECT WORKSPACE
+
+  PROJECT=$(basename "$1")
+  WORKSPACE=$(basename "$(dirname "$1")")
+
+  echo "${WORKSPACE}/${PROJECT}" | tr . _
 }
 
-tmux_fzf_session() {
+fzf_tmux_explore() {
   local SESSION_DIR_PATH SESSION_NAME
 
   if [[ $# -eq 1 ]]; then
     SESSION_DIR_PATH=$1
   else
-    SESSION_DIR_PATH=$(find ~/go/src/github.com -mindepth 2 -maxdepth 2 -type d | fzf --tmux)
+    SESSION_DIR_PATH=$(find ~/go/src/github.com -mindepth 2 -maxdepth 2 -type d | fzf --header="Project" --header-border=sharp)
   fi
 
   # Exit silently if no directory was selected.
-  if [[ -z $SESSION_DIR_PATH ]]; then
+  if [[ -z "$SESSION_DIR_PATH" ]]; then
     return 0
   fi
 
@@ -54,9 +56,11 @@ tmux_fzf_session() {
   zle reset-prompt
 }
 
-tmux_fzf_switch() {
+fzf_tmux_session() {
+  local SESSION_NAME
+
   # List sessions, extract their names, and use fzf to select one.
-  SESSION_NAME=$(tmux ls | cut -d: -f1 | fzf --list-label "tmux session" --highlight-line --style full)
+  SESSION_NAME=$(tmux ls | cut -d: -f1 | fzf --header="Session" --header-border=sharp --bind='alt-x:execute(tmux kill-session -t {})+accept')
 
   # If a session is selected, switch to it.
   if [[ -n $SESSION_NAME ]]; then

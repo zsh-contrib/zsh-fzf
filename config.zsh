@@ -2,8 +2,10 @@
 
 FZF_THEME="${FZF_THEME:-mocha}"
 
-export FZF_DEFAULT_OPTS="--tmux --layout reverse-list --highlight-line \
-  --bind 'alt-enter:become(fzf_open {}),alt-O:become(open {})'"
+export FZF_DEFAULT_OPTS="--tmux --style=minimal --layout reverse-list --highlight-line --prompt='  ' --separator=''"
+# open file or directory as you wish
+export FZF_CTRL_T_OPTS="--bind 'alt-enter:become(vifm {}),alt-O:become(open {})' --header='Search'"
+export FZF_ALT_C_OPTS="--bind 'alt-enter:become(vifm {}),alt-O:become(open {})' --header='Directory'"
 
 case "$FZF_THEME" in
   latte)
