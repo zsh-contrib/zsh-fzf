@@ -59,7 +59,7 @@ tmux_fzf_switch() {
   SESSION_NAME=$(tmux ls | cut -d: -f1 | fzf --prompt="Select tmux session> ")
 
   # If a session is selected, switch to it.
-  if [[ -n $session ]]; then
+  if [[ -n $SESSION_NAME ]]; then
     tmux_switch_to "$SESSION_NAME"
   fi
 
