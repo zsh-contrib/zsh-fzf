@@ -36,7 +36,7 @@ fzf_tmux_explore() {
   if [[ $# -eq 1 ]]; then
     SESSION_DIR_PATH=$1
   else
-    SESSION_DIR_PATH=$(find ~/go/src/github.com -mindepth 2 -maxdepth 2 -type d | fzf --header="Project" --header-border=sharp)
+    SESSION_DIR_PATH=$(find ~/go/src/github.com -mindepth 2 -maxdepth 2 -type d | fzf --header='  Projects')
   fi
 
   # Exit silently if no directory was selected.
@@ -60,7 +60,7 @@ fzf_tmux_session() {
   local SESSION_NAME
 
   # List sessions, extract their names, and use fzf to select one.
-  SESSION_NAME=$(tmux ls | cut -d: -f1 | fzf --header="Session" --header-border=sharp --bind='alt-x:execute(tmux kill-session -t {})+accept')
+  SESSION_NAME=$(tmux ls | cut -d: -f1 | fzf --header=' Session' --bind='alt-x:execute(tmux kill-session -t {})+accept')
 
   # If a session is selected, switch to it.
   if [[ -n $SESSION_NAME ]]; then
