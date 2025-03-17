@@ -51,22 +51,6 @@ fzf_tmux_explore() {
   fi
 
   tmux_switch_to "$SESSION_NAME"
-
-  # Refresh the prompt (useful when called as a ZLE widget).
-  zle reset-prompt
 }
 
-fzf_tmux_session() {
-  local SESSION_NAME
-
-  # List sessions, extract their names, and use fzf to select one.
-  SESSION_NAME=$(tmux ls | cut -d: -f1 | fzf --header=' Session' --bind='alt-x:execute(tmux kill-session -t {})+reload(tmux ls | cut -d: -f1),space:jump,jump:accept')
-
-  # If a session is selected, switch to it.
-  if [[ -n $SESSION_NAME ]]; then
-    tmux_switch_to "$SESSION_NAME"
-  fi
-
-  # Refresh the prompt (useful when called as a ZLE widget).
-  zle reset-prompt
-}
+fzf_tmux_explore
