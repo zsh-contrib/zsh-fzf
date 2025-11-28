@@ -5,7 +5,6 @@ export FZF_DEFAULT_OPTS="--style=minimal --highlight-line --prompt='  ' --hea
 export FZF_CTRL_T_OPTS="--bind 'alt-enter:become(vifm {}),alt-O:become(open {})' --header='  Finder'"
 export FZF_ALT_C_OPTS="--bind 'alt-enter:become(vifm {}),alt-O:become(open {})' --header='  Directories'"
 
-FZF_THEME="${FZF_THEME:-$TMUX_THEME}"
 FZF_THEME="${FZF_THEME:-catppuccin-mocha}"
 
 case "$FZF_THEME" in
