@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-export FZF_DEFAULT_OPTS="--style=minimal --layout reverse-list --highlight-line --prompt='   ' --gutter='' --header-border=sharp --margin=1"
+export FZF_DEFAULT_OPTS="--style=minimal --layout reverse-list --prompt='   ' --gutter='' --header-border=sharp --margin=1"
 # open file or directory as you wish
 export FZF_CTRL_T_OPTS="--bind 'alt-enter:become(vifm {}),alt-O:become(open {})' --header='  Finder'"
 export FZF_ALT_C_OPTS="--bind 'alt-enter:become(vifm {}),alt-O:become(open {})' --header='  Directories'"
