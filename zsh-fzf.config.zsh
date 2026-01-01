@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 export FZF_THEME_DIR="${0:A:h}/themes"
-export FZF_DEFAULT_OPTS="--style=minimal --layout reverse-list --highlight-line --prompt='   ' --gutter='' --header-border=sharp --margin=1"
+export FZF_DEFAULT_OPTS="--style=minimal --highlight-line --prompt='󰥭 ' --gutter=''"
 # open file or directory as you wish
 export FZF_CTRL_T_OPTS="--bind 'alt-enter:become(vifm {}),alt-O:become(open {})' --header='  Finder'"
 export FZF_ALT_C_OPTS="--bind 'alt-enter:become(vifm {}),alt-O:become(open {})' --header='  Directories'"
