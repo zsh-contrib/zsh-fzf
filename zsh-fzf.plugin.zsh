@@ -4,4 +4,4 @@
 source "${0:A:h}/zsh-fzf.config.zsh"
 
 # plugin widgets
-source "${0:A:h}/widget/zoxide.zsh"
+source "${0:A:h}/functions/zoxide.zsh"

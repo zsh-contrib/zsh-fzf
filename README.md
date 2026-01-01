@@ -1,10 +1,10 @@
 # zsh-fzf
 
-A Zsh plugin for [fzf](https://github.com/junegunn/fzf) integration with Catppuccin theming and enhanced key bindings.
+A Zsh plugin for [fzf](https://github.com/junegunn/fzf) integration with Catppuccin and Rose Pine theming and enhanced key bindings.
 
 ## Features
 
-- Catppuccin color themes (latte, frappe, macchiato, mocha)
+- Catppuccin and Rose Pine color themes (latte, frappe, macchiato, mocha, rose-pine, rose-pine-moon, rose-pine-dawn)
 - Enhanced key bindings for file/directory selection
 - Zoxide integration for smart directory jumping
 - Minimal, clean visual style
@@ -47,6 +47,8 @@ Set `FZF_THEME` before loading the plugin:
 export FZF_THEME="catppuccin-mocha"  # default
 ```
 
+Themes are organized in the `themes/` directory with each theme in its own file. See [themes/README.md](themes/README.md) for more details on creating custom themes.
+
 #### Available Themes
 
 | Theme | Description |
@@ -55,6 +57,9 @@ export FZF_THEME="catppuccin-mocha"  # default
 | `catppuccin-frappe` | Dark theme with soft contrast |
 | `catppuccin-macchiato` | Dark theme with medium contrast |
 | `catppuccin-mocha` | Dark theme with deep contrast (default) |
+| `rose-pine` | Dark theme with warm, muted colors |
+| `rose-pine-dawn` | Light theme with warm, natural colors |
+| `rose-pine-moon` | Dark theme with cool, muted colors |
 
 ### Environment Variables
 
@@ -115,7 +120,10 @@ These bindings are active in fzf's `Ctrl+T` and `Alt+C` modes:
 ```
 zsh-fzf/
 ├── zsh-fzf.plugin.zsh    # Main entry point
-├── zsh-fzf.config.zsh    # Theme and option configuration
+├── zsh-fzf.config.zsh    # Theme loader and option configuration
+├── themes/               # Theme definitions
+│   ├── README.md         # Theme documentation
+│   └── *.zsh             # Individual theme files
 ├── widget/
 │   └── zoxide.zsh        # j() function implementation
 ├── README.md
