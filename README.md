@@ -51,24 +51,24 @@ Themes are organized in the `themes/` directory with each theme in its own file.
 
 #### Available Themes
 
-| Theme | Description |
-|-------|-------------|
-| `catppuccin-latte` | Light theme with warm tones |
-| `catppuccin-frappe` | Dark theme with soft contrast |
-| `catppuccin-macchiato` | Dark theme with medium contrast |
-| `catppuccin-mocha` | Dark theme with deep contrast (default) |
-| `rose-pine` | Dark theme with warm, muted colors |
-| `rose-pine-dawn` | Light theme with warm, natural colors |
-| `rose-pine-moon` | Dark theme with cool, muted colors |
+| Theme                  | Description                             |
+| ---------------------- | --------------------------------------- |
+| `catppuccin-latte`     | Light theme with warm tones             |
+| `catppuccin-frappe`    | Dark theme with soft contrast           |
+| `catppuccin-macchiato` | Dark theme with medium contrast         |
+| `catppuccin-mocha`     | Dark theme with deep contrast (default) |
+| `rose-pine`            | Dark theme with warm, muted colors      |
+| `rose-pine-dawn`       | Light theme with warm, natural colors   |
+| `rose-pine-moon`       | Dark theme with cool, muted colors      |
 
 ### Environment Variables
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `FZF_THEME` | `catppuccin-mocha` | Color theme |
-| `FZF_DEFAULT_OPTS` | (complex) | Base fzf styling options |
-| `FZF_CTRL_T_OPTS` | (complex) | File finder options |
-| `FZF_ALT_C_OPTS` | (complex) | Directory finder options |
+| Variable           | Default            | Description              |
+| ------------------ | ------------------ | ------------------------ |
+| `FZF_THEME`        | `catppuccin-mocha` | Color theme              |
+| `FZF_DEFAULT_OPTS` | (complex)          | Base fzf styling options |
+| `FZF_CTRL_T_OPTS`  | (complex)          | File finder options      |
+| `FZF_ALT_C_OPTS`   | (complex)          | Directory finder options |
 
 ## API Reference
 
@@ -84,17 +84,17 @@ j [query]
 
 **Arguments:**
 
-| Argument | Required | Description |
-|----------|----------|-------------|
-| `query` | No | Initial search query to filter directories |
+| Argument | Required | Description                                |
+| -------- | -------- | ------------------------------------------ |
+| `query`  | No       | Initial search query to filter directories |
 
 **Key Bindings:**
 
-| Key | Action |
-|-----|--------|
-| `Enter` | Change to selected directory |
-| `Alt+Enter` | Open directory in vifm |
-| `Alt+O` | Open with system default |
+| Key         | Action                       |
+| ----------- | ---------------------------- |
+| `Enter`     | Change to selected directory |
+| `Alt+Enter` | Open directory in vifm       |
+| `Ctrl+O`    | Open with system default     |
 
 **Example:**
 
@@ -110,10 +110,10 @@ j projects
 
 These bindings are active in fzf's `Ctrl+T` and `Alt+C` modes:
 
-| Key | Action |
-|-----|--------|
-| `Alt+Enter` | Open selection in vifm |
-| `Alt+O` | Open with system default application |
+| Key         | Action                               |
+| ----------- | ------------------------------------ |
+| `Alt+Enter` | Open selection in vifm               |
+| `Ctrl+O`    | Open with system default application |
 
 ## Directory Structure
 
