@@ -14,7 +14,7 @@ export FZF_DEFAULT_OPTS="${(j: :)FZF_DEFAULT_OPTS_ITEMS}"
 
 # File picker options
 FZF_CTRL_T_OPTS_ITEMS=(
-  --header="' Files'"
+  --header="'󰱼 Files'"
   --bind="'alt-enter:become(vifm {}),ctrl-o:become(open {})'"
 )
 # Set FZF_CTRL_T_OPTS by joining the items with spaces
@@ -22,7 +22,7 @@ export FZF_CTRL_T_OPTS="${(j: :)FZF_CTRL_T_OPTS_ITEMS}"
 
 # Directory picker options
 FZF_ALT_C_OPTS_ITEMS=(
-  --header="'  Directories'"
+  --header="'󰥨 Directories'"
   --bind="'alt-enter:become(vifm {}),ctrl-o:become(open {})'"
 )
 # Set FZF_ALT_C_OPTS by joining the items with spaces
