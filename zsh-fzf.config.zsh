@@ -13,6 +13,21 @@ FZF_DEFAULT_OPTS_ITEMS=(
   --footer-border="sharp"
   --input-border="sharp"
 )
+
+
+# Directory picker options
+FZF_ALT_C_OPTS_ITEMS=(
+  --footer="'󰥨 Directories · $PWD'"
+  --bind="'alt-enter:become(vifm {}),ctrl-o:become(open {})'"
+)
+# Set FZF_ALT_C_OPTS by joining the items with spaces
+export FZF_ALT_C_OPTS="${(j: :)FZF_ALT_C_OPTS_ITEMS}"
+
+if command -v fd &>/dev/null; then
+  # Set FZF_CTRL_T_COMMAND to use fd for directory searching
+  export FZF_ALT_C_COMMAND="fd -t d"
+fi
+
 # Set FZF_DEFAULT_OPTS by joining the items with spaces
 export FZF_DEFAULT_OPTS="${(j: :)FZF_DEFAULT_OPTS_ITEMS}"
 
@@ -23,18 +38,11 @@ FZF_CTRL_T_OPTS_ITEMS=(
 )
 # Set FZF_CTRL_T_OPTS by joining the items with spaces
 export FZF_CTRL_T_OPTS="${(j: :)FZF_CTRL_T_OPTS_ITEMS}"
-# Set FZF_CTRL_T_COMMAND to use fd for file searching
-export FZF_CTRL_T_COMMAND="fd -t f --base-directory $PWD"
 
-# Directory picker options
-FZF_ALT_C_OPTS_ITEMS=(
-  --footer="'󰥨 Directories · $PWD'"
-  --bind="'alt-enter:become(vifm {}),ctrl-o:become(open {})'"
-)
-# Set FZF_ALT_C_OPTS by joining the items with spaces
-export FZF_ALT_C_OPTS="${(j: :)FZF_ALT_C_OPTS_ITEMS}"
-# Set FZF_CTRL_T_COMMAND to use fd for file searching
-export FZF_ALT_C_COMMAND="fd -t d --base-directory $PWD"
+if command -v fd &>/dev/null; then
+  # Set FZF_CTRL_T_COMMAND to use fd for file searching
+  export FZF_CTRL_T_COMMAND="fd -t f"
+fi
 
 # Theme configuration
 export FZF_THEME="${FZF_THEME:-catppuccin-mocha}"
