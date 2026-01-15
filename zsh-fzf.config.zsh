@@ -2,31 +2,39 @@
 
 # Default fzf options
 FZF_DEFAULT_OPTS_ITEMS=(
-  --gutter="''"
+  --ansi
+  --height="100%"
+  --layout="reverse-list"
+  --gutter=""
   --prompt="'󰥭 '"
-  --style=minimal
+  --style="minimal"
   --highlight-line
-  --header-border=sharp
-  --input-border=sharp
+  --color="footer:red"
+  --footer-border="sharp"
+  --input-border="sharp"
 )
 # Set FZF_DEFAULT_OPTS by joining the items with spaces
 export FZF_DEFAULT_OPTS="${(j: :)FZF_DEFAULT_OPTS_ITEMS}"
 
 # File picker options
 FZF_CTRL_T_OPTS_ITEMS=(
-  --header="'󰱼 Files'"
+  --footer="'󰱼 Files · $PWD'"
   --bind="'alt-enter:become(vifm {}),ctrl-o:become(open {})'"
 )
 # Set FZF_CTRL_T_OPTS by joining the items with spaces
 export FZF_CTRL_T_OPTS="${(j: :)FZF_CTRL_T_OPTS_ITEMS}"
+# Set FZF_CTRL_T_COMMAND to use fd for file searching
+export FZF_CTRL_T_COMMAND="fd -t f --base-directory $PWD"
 
 # Directory picker options
 FZF_ALT_C_OPTS_ITEMS=(
-  --header="'󰥨 Directories'"
+  --footer="'󰥨 Directories · $PWD'"
   --bind="'alt-enter:become(vifm {}),ctrl-o:become(open {})'"
 )
 # Set FZF_ALT_C_OPTS by joining the items with spaces
 export FZF_ALT_C_OPTS="${(j: :)FZF_ALT_C_OPTS_ITEMS}"
+# Set FZF_CTRL_T_COMMAND to use fd for file searching
+export FZF_ALT_C_COMMAND="fd -t d --base-directory $PWD"
 
 # Theme configuration
 export FZF_THEME="${FZF_THEME:-catppuccin-mocha}"
