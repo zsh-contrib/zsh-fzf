@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+# FZF current working directory
+export FZF_CWD="${FZF_CWD:-$PWD}"
+
 # Default fzf options
 FZF_DEFAULT_OPTS_ITEMS=(
   --ansi
@@ -17,7 +20,7 @@ FZF_DEFAULT_OPTS_ITEMS=(
 
 # Directory picker options
 FZF_ALT_C_OPTS_ITEMS=(
-  --footer="'󰥨 Directories · ${FZF_CWD:-$PWD}'"
+  --footer="'󰥨 Directories · $FZF_CWD'"
   --bind="'alt-enter:become(vifm {}),ctrl-o:become(open {})'"
 )
 # Set FZF_ALT_C_OPTS by joining the items with spaces
@@ -33,7 +36,7 @@ export FZF_DEFAULT_OPTS="${(j: :)FZF_DEFAULT_OPTS_ITEMS}"
 
 # File picker options
 FZF_CTRL_T_OPTS_ITEMS=(
-  --footer="'󰱼 Files · ${FZF_CWD:-$PWD}'"
+  --footer="'󰱼 Files · $FZF_CWD'"
   --bind="'alt-enter:become(vifm {}),ctrl-o:become(open {})'"
 )
 # Set FZF_CTRL_T_OPTS by joining the items with spaces
