@@ -6,13 +6,11 @@ A Zsh plugin for [fzf](https://github.com/junegunn/fzf) integration with Catppuc
 
 - Catppuccin and Rose Pine color themes (latte, frappe, macchiato, mocha, rose-pine, rose-pine-moon, rose-pine-dawn)
 - Enhanced key bindings for file/directory selection
-- Zoxide integration for smart directory jumping
 - Minimal, clean visual style
 
 ## Requirements
 
 - [fzf](https://github.com/junegunn/fzf) - Command-line fuzzy finder
-- [zoxide](https://github.com/ajeetdsouza/zoxide) - Smarter cd command (optional, for `j` function)
 - [vifm](https://vifm.info/) - File manager (optional, for `Alt+Enter` binding)
 
 ## Installation
@@ -72,40 +70,6 @@ Themes are organized in the `themes/` directory with each theme in its own file.
 
 ## API Reference
 
-### Functions
-
-#### `j` - Directory Jump
-
-Interactive directory jumping using zoxide with fzf interface.
-
-```zsh
-j [query]
-```
-
-**Arguments:**
-
-| Argument | Required | Description                                |
-| -------- | -------- | ------------------------------------------ |
-| `query`  | No       | Initial search query to filter directories |
-
-**Key Bindings:**
-
-| Key         | Action                       |
-| ----------- | ---------------------------- |
-| `Enter`     | Change to selected directory |
-| `Alt+Enter` | Open directory in vifm       |
-| `Ctrl+O`    | Open with system default     |
-
-**Example:**
-
-```zsh
-# Interactive selection
-j
-
-# Filter by query
-j projects
-```
-
 ### Global Key Bindings
 
 These bindings are active in fzf's `Ctrl+T` and `Alt+C` modes:
@@ -124,8 +88,6 @@ zsh-fzf/
 ├── themes/               # Theme definitions
 │   ├── README.md         # Theme documentation
 │   └── *.zsh             # Individual theme files
-├── widget/
-│   └── zoxide.zsh        # j() function implementation
 ├── README.md
 └── LICENSE
 ```
