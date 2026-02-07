@@ -41,8 +41,8 @@ fi
 # Directory picker options
 FZF_ALT_C_OPTS_ITEMS=(
   --footer="'󰥨 Directories · $FZF_CWD'"
-  --bind="'ctrl-o:become($FZF_OPENER {})'"
-  --bind="'alt-enter:become($FZF_BROWSER {})'"
+  --bind="'ctrl-o:execute-silent($FZF_OPENER {})'"
+  --bind="'alt-enter:execute($FZF_BROWSER {})'"
 )
 
 # Set FZF_ALT_C_OPTS by joining the items with spaces
@@ -69,8 +69,8 @@ fi
 # File picker options
 FZF_CTRL_T_OPTS_ITEMS=(
   --footer="'󰱼 Files · $FZF_CWD'"
-  --bind="'ctrl-o:become($FZF_OPENER {})'"
-  --bind="'alt-enter:become($FZF_EDITOR {})'"
+  --bind="'ctrl-o:execute-silent($FZF_OPENER {})'"
+  --bind="'alt-enter:execute($FZF_EDITOR {})'"
 )
 
 # Set FZF_CTRL_T_OPTS by joining the items with spaces
