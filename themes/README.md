@@ -118,9 +118,9 @@ You can create your own theme by following these steps:
 
 ## Variable Scope
 
-Theme files append color options to the `FZF_DEFAULT_OPTS` variable that is set in the main config file. This means:
+Theme files append color options to the `FZF_DEFAULT_OPTS` variable that is set in the plugin file. This means:
 
-- Base fzf options (layout, prompt, etc.) are defined in `zsh-fzf.config.zsh`
+- Base fzf options (layout, prompt, etc.) are defined in `zsh-fzf.plugin.zsh`
 - Theme files only add `--color=...` options
 - Themes are sourced after base config, so `$FZF_DEFAULT_OPTS` is already set
 

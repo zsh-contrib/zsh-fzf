@@ -83,8 +83,7 @@ These bindings are active in fzf's `Ctrl+T` and `Alt+C` modes:
 
 ```
 zsh-fzf/
-├── zsh-fzf.plugin.zsh    # Main entry point
-├── zsh-fzf.config.zsh    # Theme loader and option configuration
+├── zsh-fzf.plugin.zsh    # Plugin configuration and theme loader
 ├── themes/               # Theme definitions
 │   ├── README.md         # Theme documentation
 │   └── *.zsh             # Individual theme files
