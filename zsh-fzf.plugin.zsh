@@ -1,5 +1,15 @@
 #!/usr/bin/env zsh
 
+# Determine system default opener
+if [[ -z "$FZF_OPENER" ]]; then
+  if [[ "$OSTYPE" == darwin* ]]; then
+    FZF_OPENER="open"
+  else
+    FZF_OPENER="xdg-open"
+  fi
+fi
+
+
 # FZF current working directory
 export FZF_CWD="${FZF_CWD:-$PWD}"
 
@@ -8,7 +18,7 @@ FZF_DEFAULT_OPTS_ITEMS=(
   --ansi
   --height="100%"
   --layout="reverse-list"
-  --gutter=""
+  --gutter=""
   --prompt="'󰥭 '"
   --style="minimal"
   --highlight-line
@@ -17,12 +27,24 @@ FZF_DEFAULT_OPTS_ITEMS=(
   --input-border="sharp"
 )
 
+# Default browser for fzf (file managers)
+if [[ -z "$FZF_BROWSER" ]]; then
+  if command -v vifm &>/dev/null; then
+    FZF_BROWSER="vifm"
+  elif command -v yazi &>/dev/null; then
+    FZF_BROWSER="yazi"
+  else
+    FZF_BROWSER="vim"
+  fi
+fi
 
 # Directory picker options
 FZF_ALT_C_OPTS_ITEMS=(
   --footer="'󰥨 Directories · $FZF_CWD'"
-  --bind="'alt-enter:become(vifm {}),ctrl-o:become(open {})'"
+  --bind="'ctrl-o:become($FZF_OPENER {})'"
+  --bind="'alt-enter:become($FZF_BROWSER {})'"
 )
+
 # Set FZF_ALT_C_OPTS by joining the items with spaces
 export FZF_ALT_C_OPTS="${(j: :)FZF_ALT_C_OPTS_ITEMS}"
 
@@ -34,11 +56,23 @@ fi
 # Set FZF_DEFAULT_OPTS by joining the items with spaces
 export FZF_DEFAULT_OPTS="${(j: :)FZF_DEFAULT_OPTS_ITEMS}"
 
+# Default editor for fzf
+if [[ -z "$FZF_EDITOR" ]]; then
+  if command -v nvim &>/dev/null; then
+    FZF_EDITOR="nvim"
+  else
+    FZF_EDITOR="vim"
+  fi
+fi
+
+
 # File picker options
 FZF_CTRL_T_OPTS_ITEMS=(
   --footer="'󰱼 Files · $FZF_CWD'"
-  --bind="'alt-enter:become(vifm {}),ctrl-o:become(open {})'"
+  --bind="'ctrl-o:become($FZF_OPENER {})'"
+  --bind="'alt-enter:become($FZF_EDITOR {})'"
 )
+
 # Set FZF_CTRL_T_OPTS by joining the items with spaces
 export FZF_CTRL_T_OPTS="${(j: :)FZF_CTRL_T_OPTS_ITEMS}"
 
