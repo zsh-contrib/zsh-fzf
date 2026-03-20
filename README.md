@@ -2,7 +2,7 @@
 
 fzf for Zsh — Catppuccin and Rose Pine theming with enhanced key bindings.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) [![test](https://github.com/zsh-contrib/zsh-fzf/actions/workflows/test.yml/badge.svg)](https://github.com/zsh-contrib/zsh-fzf/actions/workflows/test.yml)
 
 `zsh-fzf` configures [fzf](https://github.com/junegunn/fzf) with beautiful Catppuccin and Rose Pine color themes, adds file and directory picker key bindings, and wires up your preferred editor and file manager — so fuzzy finding feels native from day one.
 
