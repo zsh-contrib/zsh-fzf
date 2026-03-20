@@ -1,6 +1,6 @@
 # zsh-fzf
 
-fzf for Zsh — Catppuccin and Rose Pine theming with enhanced key bindings.
+> fzf for Zsh — Catppuccin and Rose Pine theming with enhanced key bindings.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) [![test](https://github.com/zsh-contrib/zsh-fzf/actions/workflows/test.yml/badge.svg)](https://github.com/zsh-contrib/zsh-fzf/actions/workflows/test.yml)
 
