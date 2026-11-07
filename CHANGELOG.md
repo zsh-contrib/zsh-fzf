@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/zsh-contrib/zsh-fzf/compare/v0.1.0...v0.1.1) (2026-11-07)
+
+
+### Bug Fixes
+
+* **ci:** merge with the App token so main gets its CI run ([#40](https://github.com/zsh-contrib/zsh-fzf/issues/40)) ([739de6b](https://github.com/zsh-contrib/zsh-fzf/commit/739de6b777419bfe9fd0a1a0cd7c9173b6e1f0d7))
+
 ## [0.1.0](https://github.com/zsh-contrib/zsh-fzf/compare/v0.0.1...v0.1.0) (2026-05-04)
 
 
