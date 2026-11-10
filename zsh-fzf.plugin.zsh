@@ -97,7 +97,20 @@ if [[ -n "$TMUX" ]]; then
 fi
 
 export FZF_THEME_DIR="${0:A:h}/themes"
-# Load theme file
-if [[ -f "$FZF_THEME_DIR/$FZF_THEME.zsh" ]]; then
-  source "$FZF_THEME_DIR/$FZF_THEME.zsh"
+
+# FZF_THEME is either a bundled theme name or an absolute path to a custom
+# theme file (a zsh script that appends --color options to FZF_DEFAULT_OPTS).
+if [[ "$FZF_THEME" == /* ]]; then
+  _zsh_fzf_theme_file="$FZF_THEME"
+  if [[ ! -f "$_zsh_fzf_theme_file" ]]; then
+    print "zsh-fzf: custom theme file not found: $_zsh_fzf_theme_file" >&2
+  fi
+else
+  _zsh_fzf_theme_file="$FZF_THEME_DIR/$FZF_THEME.zsh"
 fi
+
+# Load theme file
+if [[ -f "$_zsh_fzf_theme_file" ]]; then
+  source "$_zsh_fzf_theme_file"
+fi
+unset _zsh_fzf_theme_file
