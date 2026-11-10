@@ -88,7 +88,7 @@ On load, the plugin picks `FZF_THEME_DARK` or `FZF_THEME_LIGHT` (defaults: `catp
 
 1. **Manual** — `ZSH_FZF_THEME_MODE` set to `light`, `dark`, or a theme name
 2. **TMUX** — reads `#{client_theme}`
-3. **macOS** — reads the system appearance
+3. **macOS** — reads the system appearance, unless you set `FZF_THEME` yourself (a pinned `FZF_THEME` wins over macOS, but not over tmux)
 4. **Fallback** — `FZF_THEME` (default `catppuccin-mocha`)
 
 Set `ZSH_FZF_AUTO_THEME=false` to skip steps 2 and 3. Detection runs once when the plugin loads; use `fzf-theme` to switch in an open shell.
