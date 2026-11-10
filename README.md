@@ -73,6 +73,26 @@ source ~/.zsh/plugins/zsh-fzf/zsh-fzf.plugin.zsh
 | `rose-pine-dawn` | Light theme with warm, natural colors |
 | `rose-pine-moon` | Dark theme with cool, muted colors |
 
+### Theme Commands
+
+```zsh
+fzf-themes-list          # list available themes (* marks the active one)
+fzf-theme                # print the active theme
+fzf-theme rose-pine-dawn
+fzf-theme "$HOME/.config/fzf/themes/my-theme.zsh"   # custom theme file
+```
+
+### Auto Theme Detection
+
+On load, the plugin picks `FZF_THEME_DARK` or `FZF_THEME_LIGHT` (defaults: `catppuccin-mocha` / `catppuccin-latte`) using the first signal available:
+
+1. **Manual** — `ZSH_FZF_THEME_MODE` set to `light`, `dark`, or a theme name
+2. **TMUX** — reads `#{client_theme}`
+3. **macOS** — reads the system appearance
+4. **Fallback** — `FZF_THEME` (default `catppuccin-mocha`)
+
+Set `ZSH_FZF_AUTO_THEME=false` to skip steps 2 and 3. Detection runs once when the plugin loads; use `fzf-theme` to switch in an open shell.
+
 ## Configuration
 
 ### Environment Variables
@@ -80,6 +100,10 @@ source ~/.zsh/plugins/zsh-fzf/zsh-fzf.plugin.zsh
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `FZF_THEME` | `catppuccin-mocha` | Color theme |
+| `FZF_THEME_DARK` | `catppuccin-mocha` | Theme used when a dark appearance is detected |
+| `FZF_THEME_LIGHT` | `catppuccin-latte` | Theme used when a light appearance is detected |
+| `ZSH_FZF_THEME_MODE` | `auto` | `auto`, `light`, `dark`, or a theme name |
+| `ZSH_FZF_AUTO_THEME` | `true` | Set to `false` to disable tmux/macOS detection |
 | `FZF_OPENER` | `open` / `xdg-open` | System default file opener (auto-detected) |
 | `FZF_BROWSER` | `vifm` / `yazi` / `vim` | File browser/manager (auto-detected) |
 | `FZF_EDITOR` | `nvim` / `vim` | Text editor (auto-detected) |
@@ -109,7 +133,7 @@ export FZF_THEME_DARK="$HOME/.config/fzf/themes/my-dark.zsh"
 export FZF_THEME_LIGHT=catppuccin-latte
 ```
 
-Inside tmux the theme is chosen from `FZF_THEME_DARK` / `FZF_THEME_LIGHT` (overriding `FZF_THEME`), so set those. Outside tmux, `FZF_THEME` is used. A custom theme has the same structure as the bundled ones — see [themes/README.md](themes/README.md) for details.
+With auto detection (the default) the theme is chosen from `FZF_THEME_DARK` / `FZF_THEME_LIGHT`, so set those; `FZF_THEME` is the fallback when nothing is detected. A custom theme has the same structure as the bundled ones — see [themes/README.md](themes/README.md) for details.
 
 ## The zsh-contrib Ecosystem
 

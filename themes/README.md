@@ -107,7 +107,7 @@ Keep your theme outside the plugin directory so it survives plugin updates.
    ```zsh
    export FZF_THEME="$HOME/.config/fzf/themes/my-theme.zsh"
 
-   # Inside tmux, set the dark/light variants instead:
+   # With auto detection (tmux/macOS), set the dark/light variants instead:
    export FZF_THEME_DARK="$HOME/.config/fzf/themes/my-theme.zsh"
    export FZF_THEME_LIGHT="catppuccin-latte"
    ```
@@ -135,7 +135,7 @@ Theme files append color options to the `FZF_DEFAULT_OPTS` variable that is set 
 **Theme not loading?**
 - For a bundled theme, check that `FZF_THEME` matches a filename in this directory (without `.zsh`)
 - For a custom theme, check that `FZF_THEME` is an absolute path to an existing file; a warning is printed if it is missing
-- Inside tmux, `FZF_THEME_DARK` / `FZF_THEME_LIGHT` override `FZF_THEME`
+- With auto detection (tmux or macOS), `FZF_THEME_DARK` / `FZF_THEME_LIGHT` override `FZF_THEME`; set `ZSH_FZF_AUTO_THEME=false` to turn detection off
 - Check for syntax errors in the theme file
 
 **Colors look wrong?**
@@ -143,9 +143,10 @@ Theme files append color options to the `FZF_DEFAULT_OPTS` variable that is set 
 - Test the theme with `fzf` to see actual colors
 - Check terminal color support (`echo $TERM`)
 
-**Unknown bundled theme name?**
-- A bundled name with no matching file is ignored silently and fzf keeps its default colors
+**"unknown theme" warning?**
+- The name doesn't match a file in this directory; run `fzf-themes-list` to see what's available
 - Check the `FZF_THEME` variable: `echo $FZF_THEME`
+- fzf keeps its default colors until a valid theme is loaded
 
 ## Contributing
 
