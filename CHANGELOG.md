@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.0](https://github.com/zsh-contrib/zsh-fzf/compare/v0.1.1...v0.2.0) (2026-11-10)
+
+
+### Features
+
+* add fzf-theme, fzf-themes-list and macOS/mode theme detection ([48efc2d](https://github.com/zsh-contrib/zsh-fzf/commit/48efc2dd71bed43b4c75b3475b116679b8151fc4))
+* allow custom theme files via absolute path in FZF_THEME* ([352bd2c](https://github.com/zsh-contrib/zsh-fzf/commit/352bd2c39dfb757259ebe4bde5ba20ed5cd54262))
+
+
+### Bug Fixes
+
+* a pinned FZF_THEME wins over macOS appearance detection ([c654042](https://github.com/zsh-contrib/zsh-fzf/commit/c6540422ec37be2f742d21e2d4821e113c692f34))
+
 ## [0.1.1](https://github.com/zsh-contrib/zsh-fzf/compare/v0.1.0...v0.1.1) (2026-11-07)
 
 
