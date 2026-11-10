@@ -100,7 +100,16 @@ export FZF_BROWSER="yazi"
 export FZF_EDITOR="nvim"
 ```
 
-Custom themes live in the `themes/` directory — see [themes/README.md](themes/README.md) for details.
+### Custom Themes
+
+`FZF_THEME`, `FZF_THEME_DARK` and `FZF_THEME_LIGHT` also accept an absolute path to your own theme file, so it survives plugin updates:
+
+```zsh
+export FZF_THEME_DARK="$HOME/.config/fzf/themes/my-dark.zsh"
+export FZF_THEME_LIGHT=catppuccin-latte
+```
+
+Inside tmux the theme is chosen from `FZF_THEME_DARK` / `FZF_THEME_LIGHT` (overriding `FZF_THEME`), so set those. Outside tmux, `FZF_THEME` is used. A custom theme has the same structure as the bundled ones — see [themes/README.md](themes/README.md) for details.
 
 ## The zsh-contrib Ecosystem
 

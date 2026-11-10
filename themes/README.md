@@ -82,12 +82,12 @@ All themes define colors for the following fzf UI elements:
 
 ## Creating Custom Themes
 
-You can create your own theme by following these steps:
+Keep your theme outside the plugin directory so it survives plugin updates.
 
-1. **Create a new theme file** in this directory:
+1. **Create a theme file** anywhere you like:
    ```bash
-   touch themes/my-theme.zsh
-   chmod +x themes/my-theme.zsh
+   mkdir -p ~/.config/fzf/themes
+   touch ~/.config/fzf/themes/my-theme.zsh
    ```
 
 2. **Add the theme content** following the structure above:
@@ -103,10 +103,16 @@ You can create your own theme by following these steps:
      --color=border:#...,label:#..."
    ```
 
-3. **Use your theme**:
+3. **Use your theme** by setting an absolute path before loading the plugin:
    ```zsh
-   export FZF_THEME="my-theme"
+   export FZF_THEME="$HOME/.config/fzf/themes/my-theme.zsh"
+
+   # Inside tmux, set the dark/light variants instead:
+   export FZF_THEME_DARK="$HOME/.config/fzf/themes/my-theme.zsh"
+   export FZF_THEME_LIGHT="catppuccin-latte"
    ```
+
+   Use `$HOME` instead of `~` so the path expands. To contribute a theme to the plugin itself, add it to this directory instead and use its bare name.
 
 ### Tips for Theme Creation
 
@@ -127,9 +133,9 @@ Theme files append color options to the `FZF_DEFAULT_OPTS` variable that is set 
 ## Troubleshooting
 
 **Theme not loading?**
-- Check that the theme file exists in the `themes/` directory
-- Ensure the file has a `.zsh` extension
-- Verify the file is executable: `chmod +x themes/your-theme.zsh`
+- For a bundled theme, check that `FZF_THEME` matches a filename in this directory (without `.zsh`)
+- For a custom theme, check that `FZF_THEME` is an absolute path to an existing file; a warning is printed if it is missing
+- Inside tmux, `FZF_THEME_DARK` / `FZF_THEME_LIGHT` override `FZF_THEME`
 - Check for syntax errors in the theme file
 
 **Colors look wrong?**
@@ -137,10 +143,9 @@ Theme files append color options to the `FZF_DEFAULT_OPTS` variable that is set 
 - Test the theme with `fzf` to see actual colors
 - Check terminal color support (`echo $TERM`)
 
-**Theme not found warning?**
-- The plugin will fall back to `catppuccin-mocha` if your theme isn't found
+**Unknown bundled theme name?**
+- A bundled name with no matching file is ignored silently and fzf keeps its default colors
 - Check the `FZF_THEME` variable: `echo $FZF_THEME`
-- Ensure the theme name matches the filename (without `.zsh`)
 
 ## Contributing
 

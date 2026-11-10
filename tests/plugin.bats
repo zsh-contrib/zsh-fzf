@@ -187,6 +187,47 @@ setup() {
   [[ "$output" == *"--color"* ]]
 }
 
+@test "FZF_THEME absolute path is sourced as a custom theme" {
+  local dir
+  dir="$(mktemp -d)"
+  printf 'export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=bg:#123456"\n' > "$dir/my-theme.zsh"
+  run zsh -c '
+    export FZF_THEME="$1"
+    unset TMUX
+    source "$PLUGIN_DIR/zsh-fzf.plugin.zsh"
+    echo "$FZF_DEFAULT_OPTS"
+  ' _ "$dir/my-theme.zsh"
+  rm -rf "$dir"
+  [[ "$status" -eq 0 ]]
+  [[ "$output" == *"--color=bg:#123456"* ]]
+}
+
+@test "FZF_THEME absolute path to a missing file warns" {
+  run zsh -c '
+    export FZF_THEME="/nonexistent/theme.zsh"
+    unset TMUX
+    source "$PLUGIN_DIR/zsh-fzf.plugin.zsh"
+  '
+  [[ "$output" == *"custom theme file not found"* ]]
+}
+
+@test "FZF_THEME_DARK absolute path is used under tmux dark mode" {
+  local dir bin
+  dir="$(mktemp -d)"
+  bin="$(mktemp -d)"
+  printf 'export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=bg:#abcdef"\n' > "$dir/dark.zsh"
+  printf '#!/bin/sh\necho dark\n' > "$bin/tmux"
+  chmod +x "$bin/tmux"
+  run env TMUX=fake PATH="$bin:$PATH" FZF_THEME_DARK="$dir/dark.zsh" zsh -c '
+    unset FZF_THEME
+    source "$PLUGIN_DIR/zsh-fzf.plugin.zsh"
+    echo "$FZF_DEFAULT_OPTS"
+  '
+  rm -rf "$dir" "$bin"
+  [[ "$status" -eq 0 ]]
+  [[ "$output" == *"--color=bg:#abcdef"* ]]
+}
+
 # ---------------------------------------------------------------------------
 # FZF_OPENER auto-detection
 # ---------------------------------------------------------------------------
