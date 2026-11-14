@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/zsh-contrib/zsh-fzf/compare/v0.2.0...v0.2.1) (2026-11-14)
+
+
+### Bug Fixes
+
+* share the theme with the tmux server environment ([dc36058](https://github.com/zsh-contrib/zsh-fzf/commit/dc360587b43bdda469d5445511a7226456587f6f))
+
 ## [0.2.0](https://github.com/zsh-contrib/zsh-fzf/compare/v0.1.1...v0.2.0) (2026-11-10)
 
 
