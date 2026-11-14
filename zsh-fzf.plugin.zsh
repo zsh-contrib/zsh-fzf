@@ -164,9 +164,20 @@ _zsh_fzf_resolve_theme() {
   esac
 }
 
+# Share the active theme with the tmux server. Popups started by tmux
+# (run-shell, display-popup) get the environment of the server, not of the
+# shell, so without this they keep the theme that the first shell had before
+# tmux existed, when only the macOS appearance was known.
+_zsh_fzf_sync_tmux() {
+  [[ -n "$TMUX" ]] && (( $+commands[tmux] )) || return 0
+  tmux set-environment -g FZF_THEME "$FZF_THEME" &>/dev/null
+  tmux set-environment -g FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS" &>/dev/null
+  return 0
+}
+
 # Activate a theme (name or absolute path) for the current shell: reset
-# FZF_DEFAULT_OPTS to the base options, then source the theme file.
-# Warns if the theme file doesn't exist.
+# FZF_DEFAULT_OPTS to the base options, then source the theme file, then
+# share the result with tmux. Warns if the theme file doesn't exist.
 _zsh_fzf_apply_theme() {
   local theme="$1"
   local file
@@ -182,6 +193,8 @@ _zsh_fzf_apply_theme() {
   else
     print "zsh-fzf: unknown theme '$theme' (run fzf-themes-list)" >&2
   fi
+
+  _zsh_fzf_sync_tmux
 }
 
 # List bundled themes, marking the active one

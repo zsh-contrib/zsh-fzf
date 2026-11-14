@@ -447,3 +447,24 @@ _fake() {
   [[ "$status" -eq 0 ]]
   [[ "$output" == "my-opener" ]]
 }
+
+@test "inside tmux the theme is shared with the tmux server environment" {
+  local log; log="$(mktemp)"
+  local bin; bin="$(_fake tmux 'if [ "$1" = display ]; then echo dark; else echo "$@" >> "$TMUX_LOG"; fi')"
+  run env TMUX=fake TMUX_LOG="$log" ZSH_FZF_AUTO_THEME=true PATH="$bin:$PATH" zsh -c '
+    source "$PLUGIN_DIR/zsh-fzf.plugin.zsh"'
+  local out; out="$(cat "$log")"
+  rm -rf "$bin" "$log"
+  [[ "$out" == *"set-environment -g FZF_THEME catppuccin-mocha"* ]]
+  [[ "$out" == *"set-environment -g FZF_DEFAULT_OPTS"* ]]
+}
+
+@test "outside tmux nothing is shared with tmux" {
+  local log; log="$(mktemp)"
+  local bin; bin="$(_fake tmux 'echo "$@" >> "$TMUX_LOG"')"
+  run env TMUX_LOG="$log" PATH="$bin:$PATH" zsh -c '
+    source "$PLUGIN_DIR/zsh-fzf.plugin.zsh"'
+  local out; out="$(cat "$log")"
+  rm -rf "$bin" "$log"
+  [[ -z "$out" ]]
+}
